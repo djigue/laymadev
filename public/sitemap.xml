@@ -1,0 +1,42 @@
+export default function sitemap() {
+  const baseUrl = "https://www.laymadev.com";
+
+  return [
+    {
+      url: `${baseUrl}/styleA/home`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/about`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/contact`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/services`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/services/creation-site`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/services/dev-web`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/projects`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/projects/smart-hotel`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/styleA/projects/teoola`,
+      lastModified: new Date(),
+    },
+  ];
+}
