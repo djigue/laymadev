@@ -40,7 +40,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body
-        className="min-h-screen flex flex-col md:flex-row overflow-x-hidden bg-[#020617]"
+        className="min-h-screen flex flex-col md:flex-row overflow-x-hidden"
+        style={{ backgroundColor: "#020617" }}
         suppressHydrationWarning
       >
         <TransitionProvider>
