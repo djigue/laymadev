@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import navLinks from "./NavLinks";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import MenuBurger from "./MenuBurger";
+import LinkCard from "../anims/LinkCard";
+import TransitionLink from "@/components/TransitionLink";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
@@ -29,14 +30,14 @@ export default function Navbar() {
       {/* ===== DESKTOP SIDEBAR ===== */}
       <aside className="hidden md:flex w-72 h-screen fixed top-0 left-0 bg-slate-950 text-gray-300 border-r border-slate-800 flex-col px-6 py-10 z-50">
         <div className="mb-16 flex flex-col items-center">
-          <Link href="/" className="flex items-center">
+          <TransitionLink href="/" className="flex items-center">
             <Image
               src="/images/logo.png"
               alt="LAYMA.dev |devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault"
               width={120}
               height={80}
             />
-          </Link>
+          </TransitionLink>
 
           <p className="text-xs text-gray-500 mt-2">
             Studio digital & solutions tech
@@ -49,7 +50,7 @@ export default function Navbar() {
               {link.children ? (
                 <div>
                   <div className="flex items-center justify-between">
-                    <Link
+                    <TransitionLink
                       href={link.href}
                       className={`transition ${
                         isActive(link.href)
@@ -58,7 +59,7 @@ export default function Navbar() {
                       }`}
                     >
                       {link.label}
-                    </Link>
+                    </TransitionLink>
 
                     <button
                       type="button"
@@ -83,7 +84,7 @@ export default function Navbar() {
                       >
                         {link.children.map((child, i) => (
                           <li key={i}>
-                            <Link
+                            <TransitionLink
                               href={child.href}
                               className={`text-sm transition ${
                                 isActive(child.href)
@@ -92,7 +93,7 @@ export default function Navbar() {
                               }`}
                             >
                               {child.label}
-                            </Link>
+                            </TransitionLink>
                           </li>
                         ))}
                       </motion.ul>
@@ -100,7 +101,7 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
               ) : (
-                <Link
+                <TransitionLink
                   href={link.href}
                   className={`transition ${
                     isActive(link.href)
@@ -109,11 +110,12 @@ export default function Navbar() {
                   }`}
                 >
                   {link.label}
-                </Link>
+                </TransitionLink>
               )}
             </li>
           ))}
         </ul>
+        <LinkCard />
       </aside>
     </>
   );

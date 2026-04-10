@@ -69,7 +69,7 @@ export default function DevWebPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <div className="py-28 text-white">
+      <div className="py-28 text-white ml-36">
         {/* HERO */}
         <div className="max-w-4xl mx-auto text-center mb-24">
           <MotionTitle>

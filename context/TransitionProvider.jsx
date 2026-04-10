@@ -13,36 +13,38 @@ export function TransitionProvider({ children }) {
   const pathname = usePathname();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const TRANSITION_TIME = 50;
+  const DURATION = 350; // 🔥 durée idéale
 
   const navigate = async (href) => {
     if (!href || href === pathname) return;
 
     setIsTransitioning(true);
 
-    await new Promise((r) => setTimeout(r, 400));
+    // ⏳ laisse le fade-out se faire
+    await new Promise((r) => setTimeout(r, DURATION));
 
     router.push(href, { scroll: false });
   };
 
   useEffect(() => {
-    // ✅ scroll global fiable
+    // scroll clean
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-      });
+      window.scrollTo(0, 0);
     });
 
+    // fade IN rapide après changement
     const timeout = setTimeout(() => {
       setIsTransitioning(false);
-    }, TRANSITION_TIME);
+    }, 50);
 
     return () => clearTimeout(timeout);
   }, [pathname]);
 
   return (
     <TransitionContext.Provider value={{ navigate, isTransitioning }}>
-      {children}
+      <div className={`page-transition ${isTransitioning ? "out" : "in"}`}>
+        {children}
+      </div>
     </TransitionContext.Provider>
   );
 }

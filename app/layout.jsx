@@ -40,21 +40,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body
-        className="min-h-screen flex flex-col md:flex-row overflow-x-hidden"
-        style={{ backgroundColor: "#020617" }}
+        className="min-h-screen flex flex-col md:flex-row overflow-x-hidden bg-[#020617]"
         suppressHydrationWarning
       >
-        <StructuredData />
         <TransitionProvider>
           {/* NAVBAR FIXE */}
           <NavBar />
+          <StructuredData />
           {/* CONTENU */}
           <div className="flex flex-col flex-1 md:ml-72 overflow-visible">
             <main className="px-4 md:px-16 pt-16 relative z-10">
               {children}
             </main>
-            <Footer size="py-2" marginTop="" bg="#020617" />
           </div>
+          <Footer size="py-2" marginTop="" bg="#020617" />
         </TransitionProvider>
       </body>
     </html>
