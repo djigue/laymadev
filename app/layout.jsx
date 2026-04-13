@@ -1,8 +1,8 @@
 import "./globals.css";
-import StructuredData from "@/components/seo/StructuredData";
 import NavBar from "@/components/navbars/NavBar";
 import { TransitionProvider } from "@/context/TransitionProvider";
 import Footer from "@/components/Footer";
+import LinkCard from "@/components/anims/LinkCard";
 
 export const metadata = {
   title:
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
             <main className="flex-1 px-4 md:px-12 pt-16 relative z-10">
               {children}
             </main>
-
+            <LinkCard />
             <Footer size="py-2" marginTop="" bg="#020617" />
           </div>
         </TransitionProvider>

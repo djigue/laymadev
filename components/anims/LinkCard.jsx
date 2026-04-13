@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function LinkCard({ scale = 1.03 }) {
+export default function LinkCard({ scale = 1.03, className = "" }) {
   return (
     <motion.div
       whileHover={{
@@ -17,7 +17,7 @@ export default function LinkCard({ scale = 1.03 }) {
         damping: 18,
       }}
       style={{ transformStyle: "preserve-3d" }}
-      className="relative mt-auto"
+      className={`relative mt-auto ${className}`}
     >
       <Link
         href="https://www.laymadev.fr"
