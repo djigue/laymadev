@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useEmailJs } from "@/hooks/useEmails.js";
-import SuccessModal from "@/components/SuccessModal";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useEmailJs } from '@/hooks/useEmails.js';
+import SuccessModal from '@/components/SuccessModal';
 
 const initialState = {
-  from_name: "",
-  from_email: "",
-  phone: "",
-  budget: "",
-  deadline: "",
-  project: "",
-  website: "",
+  from_name: '',
+  from_email: '',
+  phone: '',
+  budget: '',
+  deadline: '',
+  project: '',
+  website: '',
 };
 
 export default function ContactFormB() {
@@ -42,14 +42,14 @@ export default function ContactFormB() {
           <div className="flex items-center gap-6 mb-12 relative z-10">
             <div
               className={`flex items-center gap-2 text-sm font-medium ${
-                form.project ? "text-blue-400" : "text-white"
+                form.project ? 'text-blue-400' : 'text-white'
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border ${
                   form.project
-                    ? "bg-blue-500 border-blue-500"
-                    : "border-white/30"
+                    ? 'bg-blue-500 border-blue-500'
+                    : 'border-white/30'
                 }`}
               >
                 1
@@ -61,12 +61,12 @@ export default function ContactFormB() {
 
             <div
               className={`flex items-center gap-2 text-sm font-medium ${
-                form.project ? "text-white" : "text-gray-500"
+                form.project ? 'text-white' : 'text-gray-500'
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border ${
-                  form.project ? "border-white/30" : "border-white/20"
+                  form.project ? 'border-white/30' : 'border-white/20'
                 }`}
               >
                 2
@@ -172,7 +172,7 @@ export default function ContactFormB() {
                   name="budget"
                   value={form.budget}
                   onChange={handleChange}
-                  placeholder="2000 €"
+                  placeholder="en €"
                   inputMode="numeric"
                   className="bg-black/40 border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
@@ -219,14 +219,14 @@ export default function ContactFormB() {
               disabled={loading}
               className="mt-12 w-full rounded-3xl px-6 py-4 font-medium text-white bg-blue-600 hover:bg-blue-500 transition-all duration-300 disabled:opacity-60 shadow-lg"
             >
-              {loading ? "Envoi en cours..." : "Envoyer la demande"}
+              {loading ? 'Envoi en cours...' : 'Envoyer la demande'}
             </button>
 
             {/* STATUS */}
             {status.msg && (
               <div
                 className={`mt-6 text-sm ${
-                  status.type === "success" ? "text-green-400" : "text-red-400"
+                  status.type === 'success' ? 'text-green-400' : 'text-red-400'
                 }`}
               >
                 {status.msg}
@@ -241,7 +241,7 @@ export default function ContactFormB() {
 }
 
 /* Petit composant input (optionnel mais propre) */
-function Input({ label, name, type = "text", ...props }) {
+function Input({ label, name, type = 'text', ...props }) {
   return (
     <div className="flex flex-col gap-3">
       <label className="text-sm text-gray-400">{label}</label>

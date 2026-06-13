@@ -86,7 +86,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 px-6 max-w-5xl">
-          <MotionTitle className="text-5xl md:text-7xl font-semibold tracking-tight text-white mb-8 pt-2 md:pt-0">
+          <MotionTitle className="text-5xl md:text-7xl font-semibold tracking-tight text-white mb-8 pt-4 md:pt-0">
             Développeur web freelance à Béziers
             <br />
             Applications & Sites sur mesure
