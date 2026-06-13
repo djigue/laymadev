@@ -17,12 +17,12 @@ export default function Navbar() {
   return (
     <>
       {/* MOBILE TOP BAR */}
-      <div className="md:hidden fixed h-4 top-0 left-0 w-full z-9999 bg-slate-950 text-white flex items-center justify-between px-6 py-4">
+      <div className="md:hidden fixed top-0 left-0 w-full z-9999 bg-slate-950 text-white flex items-center justify-between px-6 py-4">
         <Image
           src="/images/logo.png"
           alt="LAYMA.dev | devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault"
-          width={120}
-          height={80}
+          width={100}
+          height={60}
         />
         <MenuBurger />
       </div>
