@@ -1,26 +1,26 @@
-import Link from "next/link";
-import PremiumSectionCard from "@/components/anims/PremiumSectionCard";
-import ButtonB from "@/components/buttons/ButtonB";
-import MotionTitle from "@/components/anims/MotionTitle";
-import MotionP from "@/components/anims/MotionP";
+import Link from 'next/link';
+import PremiumSectionCard from '@/components/anims/PremiumSectionCard';
+import ButtonB from '@/components/buttons/ButtonB';
+import MotionTitle from '@/components/anims/MotionTitle';
+import MotionP from '@/components/anims/MotionP';
 
 export const metadata = {
-  title: "Création site internet Béziers | Développeur Web Hérault",
+  title: 'Création site internet Béziers | Développeur Web Hérault',
 
   description:
-    "Création de sites internet pour entreprises locales à Béziers, Hérault et Hauts-Cantons. Développeur web freelance.",
+    'Création de sites internet pour entreprises locales à Béziers, Hérault et Hauts-Cantons. Développeur web freelance.',
 
   keywords: [
-    "création site internet Béziers",
-    "développeur web Béziers",
-    "site internet Hérault",
-    "développeur freelance Hérault",
-    "création site Hauts-Cantons",
-    "SEO Béziers",
-    "référencement naturel Hérault",
-    "développement web sur mesure",
-    "application web Béziers",
-    "agence web Béziers",
+    'création site internet Béziers',
+    'développeur web Béziers',
+    'site internet Hérault',
+    'développeur freelance Hérault',
+    'création site Hauts-Cantons',
+    'SEO Béziers',
+    'référencement naturel Hérault',
+    'développement web sur mesure',
+    'application web Béziers',
+    'agence web Béziers',
   ],
 
   robots: {
@@ -29,48 +29,48 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: "/",
+    canonical: '/',
   },
 
   openGraph: {
-    title: "Création site internet Béziers",
+    title: 'Création site internet Béziers',
     description:
-      "Développeur web à Béziers. Création de sites, SEO et applications web dans l’Hérault et les Hauts-Cantons.",
-    url: "https://www.laymadev.com/",
-    siteName: "LAYMAdev",
+      'Développeur web à Béziers. Création de sites, SEO et applications web dans l’Hérault et les Hauts-Cantons.',
+    url: 'https://www.laymadev.com/',
+    siteName: 'LAYMAdev',
     images: [
       {
-        url: "/images/og-home.png",
+        url: '/images/og-home.png',
         width: 1200,
         height: 630,
-        alt: "LAYMA.dev |devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault",
+        alt: 'LAYMA.dev |devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault',
       },
     ],
-    locale: "fr_FR",
-    type: "website",
+    locale: 'fr_FR',
+    type: 'website',
   },
 
   twitter: {
-    card: "summary_large_image",
-    title: "Développeur Web Béziers",
-    description: "Création de site internet à Béziers et dans l’Hérault.",
-    images: ["/logoBlack.png"],
+    card: 'summary_large_image',
+    title: 'Développeur Web Béziers',
+    description: 'Création de site internet à Béziers et dans l’Hérault.',
+    images: ['/logoBlack.png'],
   },
 };
 
 export default function HomePage() {
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "LAYMAdev",
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'LAYMAdev',
     description:
-      "Développeur web freelance à Béziers spécialisé en création de sites internet et applications web.",
-    url: "https://www.laymadev.com",
+      'Développeur web freelance à Béziers spécialisé en création de sites internet et applications web.',
+    url: 'https://www.laymadev.com',
     address: {
-      "@type": "PostalAddress",
-      addressLocality: "Béziers",
-      addressRegion: "Hérault",
-      addressCountry: "FR",
+      '@type': 'PostalAddress',
+      addressLocality: 'Béziers',
+      addressRegion: 'Hérault',
+      addressCountry: 'FR',
     },
   };
   return (
@@ -85,7 +85,7 @@ export default function HomePage() {
           <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 rounded-full blur-[140px]" />
         </div>
 
-        <div className="relative z-10 px-6 max-w-5xl">
+        <div className="relative z-10 px-6 pt-2 md:pt-0 max-w-5xl">
           <MotionTitle className="text-5xl md:text-7xl font-semibold tracking-tight text-white mb-8">
             Développeur web freelance à Béziers
             <br />
@@ -231,7 +231,7 @@ export default function HomePage() {
                   className="text-blue-400 underline"
                 >
                   React
-                </a>{" "}
+                </a>{' '}
               </li>
               <li>Tailwind</li>
               <li>Node.js</li>
@@ -243,7 +243,7 @@ export default function HomePage() {
                   className="text-blue-400 underline"
                 >
                   Symfony/PHP
-                </a>{" "}
+                </a>{' '}
               </li>
               <li>MySQL</li>
               <li>Et bien d'autres</li>
@@ -300,7 +300,7 @@ export default function HomePage() {
               <p className="text-sm text-gray-200/80 leading-relaxed">
                 <span className="text-white font-semibold">
                   Formule mensuelle
-                </span>{" "}
+                </span>{' '}
                 (sur devis) — idéale pour garder un site rapide, à jour et
                 sécurisé, sans surprise.
               </p>
