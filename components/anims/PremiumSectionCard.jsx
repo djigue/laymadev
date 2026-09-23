@@ -7,8 +7,9 @@ import Image from "next/image";
 export default function PremiumSectionCard({
   image,
   children,
-  containerClass = "",
-  alt = "LAYMA.dev |devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault",
+  containerClass = "mt-24",
+  contentClass = "px-6 md:px-12 py-20 md:py-28 max-w-6xl mx-auto",
+  alt = "LAYMA.dev | développeur web et création de site à Béziers, Hauts-Cantons, Hérault",
   priority = false,
 }) {
   const cardRef = useRef(null);
@@ -67,7 +68,7 @@ export default function PremiumSectionCard({
         rotateY: smoothRotateY,
         transformPerspective: 1200,
       }}
-      className={`relative mt-24 rounded-3xl overflow-hidden border border-white/10 bg-slate-900/80 backdrop-blur-xl ${containerClass}`}
+      className={`relative rounded-3xl overflow-hidden border border-slate-300 bg-white shadow-2xl shadow-slate-900/15 ${containerClass}`}
     >
       {/* =========================
           BACKGROUND IMAGE
@@ -84,16 +85,17 @@ export default function PremiumSectionCard({
       </div>
 
       {/* =========================
-          DARK OVERLAY
+          LIGHT WASH (plus opaque au centre, où vit le texte ;
+          plus transparent sur les bords pour laisser voir la photo)
       ========================= */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-slate-950/95" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.86),rgba(239,246,255,0.78)_45%,rgba(239,246,255,0.5)_100%)]" />
 
       {/* =========================
           LIGHT EFFECT
       ========================= */}
       <motion.div
         style={{
-          background: `radial-gradient(circle at ${smoothLightX}% ${smoothLightY}%, rgba(255,255,255,0.10), transparent 55%)`,
+          background: `radial-gradient(circle at ${smoothLightX}% ${smoothLightY}%, rgba(29,78,216,0.10), transparent 55%)`,
         }}
         className="absolute inset-0 pointer-events-none transition-opacity duration-300"
       />
@@ -101,12 +103,12 @@ export default function PremiumSectionCard({
       {/* =========================
           BORDER GLOW
       ========================= */}
-      <div className="absolute inset-0 rounded-3xl pointer-events-none border border-white/5 shadow-[0_0_40px_rgba(255,255,255,0.03)]" />
+      <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-[0_0_40px_rgba(30,64,175,0.12)]" />
 
       {/* =========================
-          CONTENT
+          CONTENT (texte directement sur la photo)
       ========================= */}
-      <div className="relative z-10 px-6 md:px-12 py-20 md:py-28 max-w-6xl mx-auto text-white">
+      <div className={`relative z-10 text-slate-900 ${contentClass}`}>
         {children}
       </div>
     </motion.section>

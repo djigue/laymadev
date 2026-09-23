@@ -1,14 +1,17 @@
-import Link from 'next/link';
 import PremiumSectionCard from '@/components/anims/PremiumSectionCard';
+import PremiumCard from '@/components/anims/PremiumCard';
+import LinkCard from '@/components/anims/LinkCard';
 import ButtonB from '@/components/buttons/ButtonB';
 import MotionTitle from '@/components/anims/MotionTitle';
 import MotionP from '@/components/anims/MotionP';
+import ContactForm from '@/components/forms/ContactForm';
 
 export const metadata = {
-  title: 'Création site internet Béziers | Développeur Web Hérault',
+  title:
+    'Développeur web freelance à Béziers | Sites & applications sur mesure – LAYMA.dev',
 
   description:
-    'Création de sites internet pour entreprises locales à Béziers, Hérault et Hauts-Cantons. Développeur web freelance.',
+    "Création de sites internet et applications web sur mesure à Béziers, dans l'Hérault et les Hauts-Cantons. Design moderne, SEO et accompagnement par un développeur freelance.",
 
   keywords: [
     'création site internet Béziers',
@@ -33,9 +36,9 @@ export const metadata = {
   },
 
   openGraph: {
-    title: 'Création site internet Béziers',
+    title: 'LAYMA.dev — Développeur web freelance à Béziers',
     description:
-      'Développeur web à Béziers. Création de sites, SEO et applications web dans l’Hérault et les Hauts-Cantons.',
+      "Création de sites internet et applications web sur mesure à Béziers, dans l'Hérault et les Hauts-Cantons.",
     url: 'https://www.laymadev.com/',
     siteName: 'LAYMAdev',
     images: [
@@ -43,7 +46,7 @@ export const metadata = {
         url: '/images/og-home.png',
         width: 1200,
         height: 630,
-        alt: 'LAYMA.dev |devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault',
+        alt: 'LAYMA.dev | développeur web et création de site à Béziers, Hauts-Cantons, Hérault',
       },
     ],
     locale: 'fr_FR',
@@ -52,187 +55,298 @@ export const metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Développeur Web Béziers',
-    description: 'Création de site internet à Béziers et dans l’Hérault.',
-    images: ['/logoBlack.png'],
+    title: 'LAYMA.dev — Développeur web freelance à Béziers',
+    description:
+      "Création de sites internet et applications web sur mesure à Béziers et dans l'Hérault.",
+    images: ['/images/logoBlack.png'],
   },
 };
 
 export default function HomePage() {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: 'LAYMAdev',
-    description:
-      'Développeur web freelance à Béziers spécialisé en création de sites internet et applications web.',
-    url: 'https://www.laymadev.com',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Béziers',
-      addressRegion: 'Hérault',
-      addressCountry: 'FR',
-    },
+    '@graph': [
+      {
+        '@type': 'ProfessionalService',
+        '@id': 'https://www.laymadev.com/#business',
+        name: 'LAYMA.dev',
+        url: 'https://www.laymadev.com/',
+        image: 'https://www.laymadev.com/images/logo.png',
+        description:
+          'Développeur web freelance à Béziers spécialisé en création de sites internet et applications web sur mesure.',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Béziers',
+          addressRegion: 'Hérault',
+          addressCountry: 'FR',
+        },
+        areaServed: ['Béziers', 'Hérault', 'Hauts-Cantons'],
+        founder: { '@id': 'https://www.laymadev.com/#person' },
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://www.laymadev.com/#person',
+        name: 'Yannick Maubrun',
+        jobTitle: 'Développeur web freelance',
+        url: 'https://www.laymadev.com/#apropos',
+      },
+      {
+        '@type': 'Service',
+        name: 'Création de site internet',
+        provider: { '@id': 'https://www.laymadev.com/#business' },
+        areaServed: 'Béziers',
+      },
+      {
+        '@type': 'Service',
+        name: 'Développement web sur mesure',
+        provider: { '@id': 'https://www.laymadev.com/#business' },
+      },
+      {
+        '@type': 'Service',
+        name: 'Hébergement & maintenance',
+        provider: { '@id': 'https://www.laymadev.com/#business' },
+      },
+    ],
   };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      {/* HERO (SEO + DESIGN) */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden text-white">
+
+      {/* ============ HERO ============ */}
+      <section
+        id="top"
+        className="relative min-h-[90vh] flex flex-col items-center justify-center text-center overflow-hidden bg-white"
+      >
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 rounded-full blur-[140px]" />
+          <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-200/50 rounded-full blur-[140px]" />
         </div>
 
-        <div className="relative z-10 px-6 max-w-5xl">
-          <MotionTitle className="text-5xl md:text-7xl font-semibold tracking-tight text-white mb-8 pt-4 md:pt-0">
-            Développeur web freelance à Béziers
-            <br />
-            Applications & Sites sur mesure
+        <div className="relative z-10 px-6 max-w-4xl">
+          <MotionTitle className="text-5xl md:text-7xl font-semibold tracking-tight text-slate-900 mb-8">
+            Votre site internet, conçu pour faire grandir votre activité
           </MotionTitle>
 
-          <MotionP className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-            Développeur web freelance à Béziers, je conçois des sites internet
-            et des applications web performantes, modernes et optimisées pour le
-            référencement naturel (SEO). J’accompagne les entreprises locales
-            dans l’Hérault et les Hauts-Cantons afin de créer des solutions
-            digitales efficaces, pensées pour durer et évoluer avec votre
-            activité.
+          <MotionP className="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
+            Développeur web freelance à Béziers, je conçois des sites et
+            applications sur mesure : clairs, rapides, et pensés pour
+            transformer vos visiteurs en clients.
           </MotionP>
 
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-3xl bg-blue-600 hover:bg-blue-500 transition text-white font-medium shadow-xl"
-          >
-            Découvrir mes services →
-          </Link>
+          <div className="flex flex-col items-center gap-4">
+            <ButtonB text="Discutons de votre projet" href="#contact" />
+            <span className="text-sm text-slate-500">
+              Basé à Béziers (Hérault) · Disponible en Occitanie et à distance
+            </span>
+          </div>
         </div>
       </section>
 
-      {/* CARDS = CLIENT MAIS CONTENU SEO */}
-      <PremiumSectionCard image="/images/bg_code.jpg">
-        <div>
-          <h2 className="text-3xl font-semibold text-blue-400 mb-10 text-center">
-            Mon expertise en développement web à Béziers
+      {/* ============ SERVICES ============ */}
+      <section
+        id="services"
+        className="px-6 md:px-16 py-24 md:py-32 scroll-mt-24"
+      >
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
+            Ce que je peux faire pour vous
           </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 text-gray-300 text-lg">
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-white">
-                Solutions sur mesure
-              </h3>
-              <p>
-                Je conçois des applications web modernes et des sites internet
-                sur mesure pour les entreprises à Béziers et dans l’Hérault.
-                Chaque projet repose sur une architecture solide, pensée pour
-                garantir performance, sécurité et évolutivité. J’interviens
-                aussi bien sur le développement front-end que back-end, en
-                accordant une attention particulière à la qualité du code, à la
-                maintenabilité et à l’optimisation SEO afin d’améliorer votre
-                visibilité sur les moteurs de recherche.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-white">
-                Accompagnement technique
-              </h3>
-              <p>
-                Je vous accompagne à chaque étape de votre projet web, du
-                conseil initial jusqu’à l’évolution de votre solution. Que ce
-                soit pour une optimisation technique, une refonte ou un suivi
-                long terme, vous échangez directement avec un développeur web
-                freelance basé à Béziers. Cette proximité permet une meilleure
-                compréhension de vos besoins et une réactivité optimale pour
-                faire évoluer votre site internet ou votre application web dans
-                le temps.
-              </p>
-            </div>
-          </div>
+          <p className="text-slate-600 text-lg">
+            Trois façons de renforcer votre présence en ligne, selon vos
+            besoins.
+          </p>
         </div>
-      </PremiumSectionCard>
 
-      <PremiumSectionCard image="/images/bg_service.jpg">
-        <div>
-          <h2 className="text-3xl font-semibold text-blue-400 mb-10 text-center">
-            Création de sites web & développement sur mesure
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 text-gray-300 text-lg">
-            <p className="mt-10">
-              Je conçois et développe des sites internet modernes, fiables et
-              optimisés pour le référencement naturel (SEO), adaptés aux besoins
-              des entreprises locales à Béziers, dans l’Hérault et les
-              Hauts-Cantons. Chaque projet est pensé sur mesure en fonction de
-              votre activité, de vos objectifs et de votre cible afin de
-              garantir une présence en ligne efficace, performante et durable.
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+          <PremiumSectionCard
+            image="/images/bg_tech.jpg"
+            containerClass=""
+            contentClass="p-8 h-full flex flex-col"
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-slate-900">
+              Création de site internet
+            </h3>
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              Un site vitrine ou e-commerce moderne, rapide et optimisé pour
+              être trouvé sur Google.
             </p>
-            <ul className="relative z-10 space-y-2 list-disc ml-20">
-              <li>Création de sites web</li>
-              <li>Développement sur mesure</li>
-              <li>Maintenance / refonte</li>
-              <li>WebApps & outils internes</li>
-              <li>Intégrations API</li>
+            <ul className="text-slate-600 space-y-2 mb-8 text-sm">
+              <li>✔️ Design sur mesure, à votre image</li>
+              <li>✔️ SEO technique inclus dès la conception</li>
+              <li>✔️ 100% responsive (mobile, tablette, desktop)</li>
+              <li>✔️ Mise en ligne rapide et accompagnée</li>
+            </ul>
+            <a
+              href="#contact"
+              className="text-blue-700 font-medium hover:text-blue-900 transition mt-auto"
+            >
+              En discuter →
+            </a>
+          </PremiumSectionCard>
+
+          <PremiumSectionCard
+            image="/images/bg_code.jpg"
+            containerClass=""
+            contentClass="p-8 h-full flex flex-col"
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-slate-900">
+              Développement sur mesure
+            </h3>
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              Une application ou un outil interne pensé pour votre activité,
+              pour automatiser ce qui vous fait perdre du temps.
+            </p>
+            <ul className="text-slate-600 space-y-2 mb-8 text-sm">
+              <li>✔️ Applications métier & outils internes</li>
+              <li>✔️ Intégrations API</li>
+              <li>✔️ Interfaces modernes en React</li>
+              <li>✔️ Architecture pensée pour évoluer</li>
+            </ul>
+            <a
+              href="#contact"
+              className="text-blue-700 font-medium hover:text-blue-900 transition mt-auto"
+            >
+              En discuter →
+            </a>
+          </PremiumSectionCard>
+
+          <PremiumSectionCard
+            image="/images/hebergement.jpg"
+            containerClass=""
+            contentClass="p-8 h-full flex flex-col"
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-slate-900">
+              Hébergement & maintenance
+            </h3>
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              Gardez un site rapide, sécurisé et à jour, sans avoir à vous en
+              soucier.
+            </p>
+            <ul className="text-slate-600 space-y-2 mb-8 text-sm">
+              <li>✔️ Sauvegardes régulières</li>
+              <li>✔️ Mises à jour & sécurité</li>
+              <li>✔️ Support réactif</li>
+              <li>✔️ Formule mensuelle, sur devis</li>
+            </ul>
+            <a
+              href="#contact"
+              className="text-blue-700 font-medium hover:text-blue-900 transition mt-auto"
+            >
+              En discuter →
+            </a>
+          </PremiumSectionCard>
+        </div>
+      </section>
+
+      {/* ============ POURQUOI + PROCESSUS ============ */}
+      <section
+        id="apropos"
+        className="px-6 md:px-16 py-24 md:py-32 scroll-mt-24"
+      >
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
+            Mon approche
+          </h2>
+          <p className="text-slate-600 text-lg">
+            La philosophie derrière chaque projet, et comment on avance ensemble
+            une fois lancés.
+          </p>
+        </div>
+
+        <PremiumSectionCard
+          image="/images/bg_choice.jpg"
+          containerClass="max-w-6xl mx-auto"
+        >
+          <h3 className="text-3xl font-semibold text-slate-900 mb-10 text-center">
+            Pourquoi travailler avec moi
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Je m&apos;appelle Yannick, développeur web freelance basé à
+              Béziers. Mon objectif n&apos;est pas de livrer un site joli qui
+              prend la poussière, mais un outil qui sert concrètement votre
+              activité : plus de visibilité, plus de demandes, plus de clients.
+              Vous avez un interlocuteur unique du premier échange à la mise en
+              ligne, et je reste disponible ensuite pour faire évoluer votre
+              site avec vous.
+            </p>
+
+            <ul className="text-slate-600 space-y-3 text-lg">
+              <li>✔️ Un interlocuteur unique, sans intermédiaire</li>
+              <li>✔️ Code propre, documenté et facile à faire évoluer</li>
+              <li>✔️ Délais annoncés, respectés</li>
+              <li>✔️ Suivi après la mise en ligne</li>
             </ul>
           </div>
-        </div>
-      </PremiumSectionCard>
 
-      <PremiumSectionCard image="/images/bg_choice.jpg">
-        <div>
-          <h2 className="text-3xl font-semibold text-blue-400 mb-10 text-center">
-            Pourquoi choisir un développeur web freelance ?
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 text-gray-300 text-lg">
-            <p className="mt-4">
-              Faire appel à un développeur web freelance à Béziers, c’est
-              choisir une collaboration directe, sans intermédiaires. De l’idée
-              à la mise en production, je vous accompagne avec rigueur,
-              transparence et exigence. Cette approche permet de garantir un
-              résultat fiable, durable et parfaitement aligné avec vos besoins,
-              tout en offrant une grande flexibilité et une meilleure réactivité
-              pour vos projets digitaux dans l’Hérault.
-            </p>
-            <ul className="relative z-10 space-y-2 list-disc ml-20">
-              <li>Un interlocuteur unique</li>
-              <li>Code propre et maintenable</li>
-              <li>Délais maîtrisés</li>
-              <li>Vision technique claire</li>
-              <li>Solutions réellement sur mesure</li>
-            </ul>
+          <div className="mt-16 pt-10 border-t border-slate-200">
+            <h4 className="text-xl font-semibold mb-8 text-slate-900 text-center">
+              Comment on travaille ensemble
+            </h4>
+            <div className="grid md:grid-cols-4 gap-8 text-slate-600">
+              <div>
+                <span className="text-blue-700 font-semibold">01</span>
+                <h5 className="text-slate-900 font-semibold mt-2 mb-2">
+                  Échange
+                </h5>
+                <p className="text-sm leading-relaxed">
+                  On discute de votre projet, de vos objectifs, de vos
+                  contraintes et de votre budget.
+                </p>
+              </div>
+              <div>
+                <span className="text-blue-700 font-semibold">02</span>
+                <h5 className="text-slate-900 font-semibold mt-2 mb-2">
+                  Conception
+                </h5>
+                <p className="text-sm leading-relaxed">
+                  Je vous propose une solution adaptée : structure, choix
+                  techniques et planning.
+                </p>
+              </div>
+              <div>
+                <span className="text-blue-700 font-semibold">03</span>
+                <h5 className="text-slate-900 font-semibold mt-2 mb-2">
+                  Développement
+                </h5>
+                <p className="text-sm leading-relaxed">
+                  Je code, avec des points réguliers pour garder le cap
+                  ensemble.
+                </p>
+              </div>
+              <div>
+                <span className="text-blue-700 font-semibold">04</span>
+                <h5 className="text-slate-900 font-semibold mt-2 mb-2">
+                  Mise en ligne & suivi
+                </h5>
+                <p className="text-sm leading-relaxed">
+                  Livraison de votre site, puis accompagnement pour le faire
+                  évoluer dans le temps.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </PremiumSectionCard>
 
-      <PremiumSectionCard image="/images/bg_tech.jpg">
-        <div>
-          <h2 className="text-3xl font-semibold text-blue-400 mb-10 text-center">
-            Technologies modernes pour des applications performantes
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 text-gray-300 text-lg">
-            <p className="mt-8">
-              J’utilise des technologies modernes et éprouvées pour concevoir
-              des sites internet et des applications web rapides, sécurisées et
-              évolutives. Chaque choix technique est réalisé en fonction de
-              votre projet afin d’optimiser les performances, l’expérience
-              utilisateur et le référencement SEO. L’objectif est de vous
-              proposer des solutions fiables, adaptées aux standards actuels du
-              web et capables d’évoluer avec votre activité.
-            </p>
-            <ul className="space-y-1 list-disc ml-20">
+          <div className="mt-16 pt-10 border-t border-slate-200">
+            <h4 className="text-xl font-semibold mb-6 text-slate-900 text-center">
+              Les outils que j&apos;utilise
+            </h4>
+            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-slate-600">
               <li>
                 <a
                   href="https://react.dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 underline"
+                  className="text-blue-700 underline"
                 >
                   React
-                </a>{' '}
+                </a>
               </li>
+              <li>Next.js</li>
               <li>Tailwind</li>
               <li>Node.js</li>
               <li>
@@ -240,87 +354,84 @@ export default function HomePage() {
                   href="https://symfony.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 underline"
+                  className="text-blue-700 underline"
                 >
                   Symfony/PHP
-                </a>{' '}
+                </a>
               </li>
               <li>MySQL</li>
-              <li>Et bien d'autres</li>
             </ul>
           </div>
-        </div>
-      </PremiumSectionCard>
+        </PremiumSectionCard>
+      </section>
 
-      <PremiumSectionCard image="/images/bg_process.jpg">
-        <div>
-          <h2 className="text-3xl font-semibold text-blue-400 mb-10 text-center">
-            Processus de collaboration
+      {/* ============ PROJETS ============ */}
+      <section
+        id="projets"
+        className="px-6 md:px-16 py-24 md:py-32 scroll-mt-24"
+      >
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
+            Quelques projets réalisés
           </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 text-gray-300 text-lg">
-            <p className="mt-4">
-              Chaque projet débute par un échange approfondi afin de comprendre
-              votre activité, vos objectifs et vos contraintes. Je conçois
-              ensuite une solution sur mesure, adaptée à vos besoins
-              fonctionnels et techniques. Le développement est réalisé de
-              manière progressive avec des points réguliers pour garantir
-              qualité, performance et cohérence. Une fois le projet livré, je
-              reste disponible pour assurer le suivi, la maintenance et les
-              évolutions futures de votre site internet ou application web.
-            </p>
-            <ul className="space-y-1 list-disc ml-20 mt-14">
-              <li>Comprendre votre vision</li>
-              <li>Concevoir votre solution</li>
-              <li>Développer et tester</li>
-              <li>Livrer et accompagner</li>
-              <li>Maintenir</li>
-            </ul>
-          </div>
+          <p className="text-slate-600 text-lg">
+            Trois exemples récents de solutions sur mesure, du cahier des
+            charges à la mise en production.
+          </p>
         </div>
-      </PremiumSectionCard>
 
-      <PremiumSectionCard image="/images/hebergement.jpg">
-        <div>
-          <h2 className="text-3xl font-semibold text-blue-400 mb-10 text-center">
-            Hébergement & Maintenance
+        <div className="space-y-16 max-w-6xl mx-auto">
+          <PremiumCard
+            image="/images/teoola.png"
+            title="Teoola"
+            description="Application de gestion d'abonnés conçue pour la performance et l'automatisation."
+            link="/projects/teoola"
+            showButton
+          />
+
+          <PremiumCard
+            image="/images/hotels1.png"
+            title="SmartHotel"
+            description="Solution intelligente de gestion hôtelière."
+            link="/projects/smart-hotel"
+            showButton
+          />
+
+          <PremiumCard
+            image="/images/caroux.png"
+            title="Caroux Electro Vélo"
+            description="Location et vente de vélos électriques."
+            link="/projects/caroux"
+            showButton
+          />
+        </div>
+      </section>
+
+      {/* ============ CONTACT ============ */}
+      <section
+        id="contact"
+        className="relative px-6 py-24 md:py-32 text-center overflow-hidden scroll-mt-24"
+      >
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-200/50 rounded-full blur-[140px]" />
+        </div>
+
+        <div className="relative z-10">
+          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mb-6">
+            Parlons de votre projet
           </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 text-gray-300 text-lg">
-            <div>
-              <p className="mt-8">
-                Pour garantir la performance, la sécurité et la stabilité de
-                votre site internet, je propose une solution d’hébergement et de
-                maintenance adaptée aux entreprises à Béziers et dans l’Hérault.
-                Vous bénéficiez d’un accompagnement complet incluant mises à
-                jour, surveillance, sauvegardes et support technique, afin de
-                vous concentrer pleinement sur votre activité sans vous soucier
-                des aspects techniques.
-              </p>
-              <p className="text-sm text-gray-200/80 leading-relaxed">
-                <span className="text-white font-semibold">
-                  Formule mensuelle
-                </span>{' '}
-                (sur devis) — idéale pour garder un site rapide, à jour et
-                sécurisé, sans surprise.
-              </p>
-            </div>
-
-            <ul className="space-y-1 list-disc ml-20">
-              <li>Hébergement sécurisé,</li>
-              <li>Maintenance technique,</li>
-              <li>Mises à jour,</li>
-              <li>Support,</li>
-              <li>Suivi évolutif,</li>
-              <li>Sauvegardes,</li>
-              <li>Surveillance,</li>
-            </ul>
-          </div>
+          <p className="text-slate-600 text-lg max-w-xl mx-auto">
+            Décrivez-moi votre projet en quelques mots, je vous réponds
+            rapidement pour en discuter ensemble.
+          </p>
         </div>
-      </PremiumSectionCard>
 
-      <div className="mt-10 flex justify-center mb-10">
-        <ButtonB />
+        <ContactForm />
+      </section>
+
+      {/* ============ AUTRE EXPÉRIENCE ============ */}
+      <div className="max-w-md mx-auto px-6 pb-16">
+        <LinkCard />
       </div>
     </>
   );

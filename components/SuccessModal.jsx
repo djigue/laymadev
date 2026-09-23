@@ -1,10 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
 
 export default function SuccessModal({ open, onClose }) {
-  const router = useRouter();
   return (
     <AnimatePresence>
       {open && (
@@ -23,24 +21,24 @@ export default function SuccessModal({ open, onClose }) {
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-md mx-4"
           >
-            <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-2xl overflow-hidden">
               {/* Glow */}
-              <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px]" />
+              <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-blue-100/60 rounded-full blur-[100px]" />
 
               {/* Content */}
               <div className="relative z-10 text-center">
-                <h2 className="text-2xl font-semibold text-white mb-3">
+                <h2 className="text-2xl font-semibold text-slate-900 mb-3">
                   Message envoyé
                 </h2>
-                <p className="text-gray-400 mb-6">
+                <p className="text-slate-500 mb-6">
                   On revient vers vous rapidement.
                 </p>
 
                 <button
-                  onClick={() => router.push("/")}
-                  className="flex-1 rounded-2xl px-4 py-3 bg-blue-600 text-white hover:bg-blue-500 transition"
+                  onClick={onClose}
+                  className="flex-1 rounded-2xl px-4 py-3 bg-slate-900 text-white hover:bg-slate-800 transition"
                 >
-                  Retour à l'Accueil
+                  Fermer
                 </button>
               </div>
             </div>

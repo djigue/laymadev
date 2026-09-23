@@ -1,125 +1,143 @@
 'use client';
 
 import navLinks from './NavLinks';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import MenuBurger from './MenuBurger';
-import LinkCard from '../anims/LinkCard';
-import TransitionLink from '@/components/TransitionLink';
+import ButtonB from '@/components/buttons/ButtonB';
+
+const projectPages = [
+  { slug: 'teoola', label: 'Teoola', href: '/projects/teoola' },
+  { slug: 'smart-hotel', label: 'SmartHotel', href: '/projects/smart-hotel' },
+  { slug: 'caroux', label: 'Caroux', href: '/projects/caroux' },
+];
 
 export default function Navbar() {
-  const [openMenu, setOpenMenu] = useState(null);
   const pathname = usePathname();
-  const isActive = (href) => pathname === href;
+  const isHome = pathname === '/';
+  const [activeId, setActiveId] = useState('top');
 
-  return (
-    <>
-      {/* MOBILE TOP BAR */}
-      <div className="md:hidden fixed top-0 left-0 w-full z-9999 bg-slate-950 text-white flex items-center justify-between px-6 py-4">
-        <Image
-          src="/images/logo.png"
-          alt="LAYMA.dev | devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault"
-          width={100}
-          height={60}
-        />
-        <MenuBurger />
-      </div>
+  useEffect(() => {
+    if (!isHome) return;
 
-      {/* DESKTOP SIDEBAR */}
-      <aside className="hidden md:flex fixed top-0 left-0 h-screen w-72 bg-slate-950 text-gray-300 border-r border-slate-800 flex-col px-6 py-10 z-50">
-        <div className="mb-4 flex flex-col items-center shrink-0">
-          <TransitionLink href="/" className="flex items-center">
+    const sectionIds = navLinks.map((link) => link.href.replace('#', ''));
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]) setActiveId(visible[0].target.id);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [isHome]);
+
+  /* =========================
+     NAV SIMPLIFIÉE (pages hors one-page : projets, légal...)
+     Les ancres #services / #apropos n'existent que sur "/",
+     donc pas de scroll-spy ni de liens d'ancre ici.
+  ========================= */
+  if (!isHome) {
+    const otherProjects = projectPages.filter(
+      (p) => !pathname.startsWith(p.href)
+    );
+
+    return (
+      <header className="sticky top-0 z-9999 w-full bg-slate-900/95 backdrop-blur-xl border-b border-slate-800">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-6 md:px-10 py-3">
+          <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/logo.png"
-              alt="LAYMA.dev | devleoppeur web et création de site à Béziers, Hauts-Cantons, Hérault"
-              width={120}
-              height={80}
+              alt="LAYMA.dev | développeur web et création de site à Béziers, Hauts-Cantons, Hérault"
+              width={90}
+              height={57}
+              priority
             />
-          </TransitionLink>
+          </Link>
 
-          <p className="text-xs text-gray-500 mt-2">
-            Studio digital & solutions tech
-          </p>
+          <nav className="flex items-center gap-4 md:gap-6">
+            <Link
+              href="/"
+              className="text-xs sm:text-sm text-slate-400 hover:text-white transition"
+            >
+              Accueil
+            </Link>
+            {pathname.startsWith('/projects') &&
+              otherProjects.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={p.href}
+                  className="hidden md:inline text-sm text-slate-400 hover:text-white transition"
+                >
+                  {p.label}
+                </Link>
+              ))}
+          </nav>
+
+          <ButtonB
+            text="Me contacter"
+            href="/#contact"
+            className="shrink-0 relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-400 text-white text-xs sm:text-sm font-medium shadow-lg shadow-orange-500/20 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-orange-300"
+          />
+        </div>
+      </header>
+    );
+  }
+
+  /* =========================
+     NAV COMPLÈTE (one-page "/")
+  ========================= */
+  return (
+    <header className="sticky top-0 z-9999 w-full bg-slate-900/95 backdrop-blur-xl border-b border-slate-800">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-3">
+        <a href="#top" className="flex items-center shrink-0">
+          <Image
+            src="/images/logo.png"
+            alt="LAYMA.dev | développeur web et création de site à Béziers, Hauts-Cantons, Hérault"
+            width={90}
+            height={57}
+            priority
+          />
+        </a>
+
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`text-sm transition ${
+                activeId === link.href.replace('#', '')
+                  ? 'text-white font-semibold'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden md:block">
+          <ButtonB
+            text="Me contacter"
+            href="#contact"
+            className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-400 text-white text-sm font-medium shadow-lg shadow-orange-500/20 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-orange-300"
+          />
         </div>
 
-        <div className="flex flex-col flex-1 min-h-0">
-          <ul className="flex flex-col gap-6 mb-4">
-            {navLinks.map((link, index) => (
-              <li key={index}>
-                {link.children ? (
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <TransitionLink
-                        href={link.href}
-                        className={`transition ${
-                          isActive(link.href)
-                            ? 'text-white font-semibold'
-                            : 'text-gray-300 hover:text-white'
-                        }`}
-                      >
-                        {link.label}
-                      </TransitionLink>
-
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setOpenMenu(openMenu === index ? null : index)
-                        }
-                        className="ml-2 text-lg cursor-pointer text-gray-300 hover:text-white"
-                        aria-expanded={openMenu === index}
-                        aria-label="Ouvrir le sous-menu"
-                      >
-                        {openMenu === index ? '−' : '+'}
-                      </button>
-                    </div>
-
-                    <AnimatePresence>
-                      {openMenu === index && (
-                        <motion.ul
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="ml-3 mt-2 flex flex-col gap-2 overflow-hidden"
-                        >
-                          {link.children.map((child, i) => (
-                            <li key={i}>
-                              <TransitionLink
-                                href={child.href}
-                                className={`text-sm transition ${
-                                  isActive(child.href)
-                                    ? 'text-white'
-                                    : 'text-gray-400 hover:text-white'
-                                }`}
-                              >
-                                {child.label}
-                              </TransitionLink>
-                            </li>
-                          ))}
-                        </motion.ul>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <TransitionLink
-                    href={link.href}
-                    className={`transition ${
-                      isActive(link.href)
-                        ? 'text-white font-semibold'
-                        : 'text-gray-300 hover:text-white'
-                    }`}
-                  >
-                    {link.label}
-                  </TransitionLink>
-                )}
-              </li>
-            ))}
-          </ul>
-
-          <LinkCard />
-        </div>
-      </aside>
-    </>
+        <MenuBurger />
+      </div>
+    </header>
   );
 }

@@ -13,20 +13,25 @@ export const metadata = {
 
 export default function MentionsLegales() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-20 text-white">
+    <section className="max-w-4xl mx-auto px-6 py-20 text-slate-700">
       <MotionTitle>Mentions légales</MotionTitle>
 
       <p className="mb-4">
         <strong className="underline">Éditeur du site :</strong>
         <br />
-        LAYMA.dev <br />
-        Freelance Développement Web <br />
-        Création site internet <br />
-        France
+        LAYMA.dev — Yannick Maubrun <br />
+        Auto-entrepreneur — Freelance Développement Web <br />
+        1020 Grand Rue, 34390 Mons-la-Trivalle, France <br />
+        SIRET : 999 877 756 00018
       </p>
 
       <p className="mb-4">
-        <strong className="underline">Contact :</strong> contact@layma.dev
+        <strong className="underline">Directeur de la publication :</strong>{" "}
+        Yannick Maubrun
+      </p>
+
+      <p className="mb-4">
+        <strong className="underline">Contact :</strong> contact@laymadev.com
       </p>
 
       <p className="mb-4">

@@ -100,7 +100,6 @@ export function useEmailJs(initialState, onSuccess) {
 
       setStatus({ type: "success", msg: "Message envoyé ✅" });
       setForm(initialState);
-      console.log("EMAIL SUCCESS TRIGGER");
       if (onSuccess) onSuccess();
     } catch (err) {
       console.error(err);

@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function Confidentialite() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-20 text-white">
+    <section className="max-w-4xl mx-auto px-6 py-20 text-slate-700">
       <MotionTitle>Politique de confidentialité</MotionTitle>
 
       <p className="mb-4">
@@ -37,7 +37,7 @@ export default function Confidentialite() {
       </h2>
       <p>
         Vous pouvez demander l’accès, la modification ou la suppression de vos
-        données par email à layma.dev@outlook.com.
+        données par email à contact@laymadev.com.
       </p>
     </section>
   );

@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function CGU() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-20 text-white">
+    <section className="max-w-4xl mx-auto px-6 py-20 text-slate-700">
       <MotionTitle>Conditions Générales d’Utilisation</MotionTitle>
 
       <p className="mb-4 ">

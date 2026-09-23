@@ -26,8 +26,8 @@ import { motion } from "framer-motion";
 
 export default function ButtonB({
   text = "Nous contacter",
-  href = "/contact",
-  className = "relative inline-flex items-center gap-3 px-8 py-4 rounded-3xl bg-gradient-to-br from-blue-600 to-blue-500 text-white font-medium tracking-wide shadow-xl border border-white/10 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-blue-400",
+  href = "/#contact",
+  className = "relative inline-flex items-center gap-3 px-8 py-4 rounded-3xl bg-gradient-to-br from-orange-500 to-orange-400 text-white font-medium tracking-wide shadow-xl shadow-orange-500/20 border border-orange-300/40 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-orange-300",
 }) {
   return (
     <Link href={href}>

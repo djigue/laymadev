@@ -5,7 +5,7 @@ import { usePageTransition } from "@/context/TransitionProvider";
 
 export default function MotionTitle({
   children,
-  className = "text-4xl md:text-6xl text-white font-bold mb-6",
+  className = "text-4xl md:text-6xl text-slate-900 font-bold mb-6",
   startY = 40,
   duration = 1,
 }) {

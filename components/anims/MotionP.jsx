@@ -7,7 +7,7 @@ export default function MotionP({
   children,
   startY = 30,
   duration = 1,
-  className = "text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12",
+  className = "text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-12",
   once = true,
 }) {
   const { isTransitioning } = usePageTransition();

@@ -27,10 +27,13 @@ export function TransitionProvider({ children }) {
   };
 
   useEffect(() => {
-    // scroll clean
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
+    // scroll clean, sauf si l'URL cible pointe vers une ancre
+    // (ex: navbar des pages projets -> "/#contact")
+    if (!window.location.hash) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
+    }
 
     // fade IN rapide après changement
     const timeout = setTimeout(() => {

@@ -3,31 +3,7 @@ export default function sitemap() {
 
   return [
     {
-      url: `${baseUrl}/home`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/services/creation-site`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/services/dev-web`,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}/projects`,
+      url: baseUrl,
       lastModified: new Date(),
     },
     {
@@ -36,6 +12,10 @@ export default function sitemap() {
     },
     {
       url: `${baseUrl}/projects/teoola`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/projects/caroux`,
       lastModified: new Date(),
     },
   ];

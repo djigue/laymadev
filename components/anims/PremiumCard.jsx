@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { usePageTransition } from '@/context/TransitionProvider';
 
 export default function PremiumCard({
@@ -77,11 +78,13 @@ export default function PremiumCard({
           : {}
       }
       className="
-        rounded-2xl md:rounded-3xl 
-        overflow-hidden 
-        bg-slate-900 
-        cursor-pointer 
-        active:scale-[0.98] 
+        rounded-2xl md:rounded-3xl
+        overflow-hidden
+        bg-white
+        border border-slate-200
+        shadow-sm
+        cursor-pointer
+        active:scale-[0.98]
         transition
       "
       onClick={(e) => {
@@ -90,42 +93,38 @@ export default function PremiumCard({
       }}
     >
       {/* IMAGE */}
-      <img
-        src={image}
-        alt={title}
-        className="
-          w-full 
-          h-[180px] 
-          sm:h-[220px]
-          md:h-[480px] 
-          object-contain 
-          bg-slate-950
-          p-4 md:p-0
-        "
-      />
+      <div className="relative w-full h-[180px] sm:h-[220px] md:h-[480px] bg-slate-50">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain p-4 md:p-0"
+        />
+      </div>
 
       {/* TEXTE (IMPORTANT : PLUS D'ABSOLUTE EN MOBILE) */}
       <div
         className="
-          p-4 
-          md:absolute md:bottom-0 md:left-0 md:w-full 
+          p-4
+          md:absolute md:bottom-0 md:left-0 md:w-full
           md:p-12
           md:bg-gradient-to-t md:from-black/70 md:to-transparent
         "
       >
         <div className="max-w-full md:max-w-xl">
-          <h2 className="text-lg md:text-5xl font-semibold mb-2 md:mb-3">
+          <h2 className="text-lg md:text-5xl font-semibold mb-2 md:mb-3 text-slate-900 md:text-white">
             {title}
           </h2>
 
-          <p className="text-gray-300 text-sm md:text-lg leading-snug md:leading-relaxed">
+          <p className="text-slate-600 md:text-gray-300 text-sm md:text-lg leading-snug md:leading-relaxed">
             {description}
           </p>
         </div>
       </div>
 
       {/* CTA MOBILE */}
-      <div className="md:hidden px-4 pb-4 text-blue-400 text-sm font-medium">
+      <div className="md:hidden px-4 pb-4 text-blue-700 text-sm font-medium">
         Voir le projet →
       </div>
 
