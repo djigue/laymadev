@@ -63,6 +63,21 @@ export default function MenuBurger() {
                   </a>
                 </motion.li>
               ))}
+              <motion.li
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <a
+                  href="https://www.laymadev.fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-slate-400 hover:text-white transition"
+                >
+                  Versions alternatives ↗
+                </a>
+              </motion.li>
             </motion.ul>
 
             <div className="mt-auto pt-16">
@@ -72,14 +87,6 @@ export default function MenuBurger() {
                 className="block w-full text-center py-4 rounded-xl bg-orange-500 text-white font-medium text-lg hover:bg-orange-600 transition"
               >
                 Discuter d&apos;un projet
-              </a>
-              <a
-                href="https://www.laymadev.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block mt-6 text-center text-sm text-slate-400 hover:text-white transition"
-              >
-                Versions alternatives ↗
               </a>
             </div>
           </motion.div>
