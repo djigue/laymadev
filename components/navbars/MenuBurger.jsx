@@ -73,6 +73,14 @@ export default function MenuBurger() {
               >
                 Discuter d&apos;un projet
               </a>
+              <a
+                href="https://www.laymadev.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-6 text-center text-sm text-slate-400 hover:text-white transition"
+              >
+                Versions alternatives ↗
+              </a>
             </div>
           </motion.div>
         )}

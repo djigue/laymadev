@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Gallery({ images = [] }) {
   const [currentIndex, setCurrentIndex] = useState(null);
+  // Vrai uniquement côté navigateur : document.body n'existe pas au SSR
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const openImage = (index) => setCurrentIndex(index);
   const closeImage = () => setCurrentIndex(null);
@@ -51,71 +58,76 @@ export default function Gallery({ images = [] }) {
         })}
       </div>
 
-      {/* LIGHTBOX */}
-      <AnimatePresence>
-        {currentIndex !== null && (
-          <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-lg flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeImage}
-          >
-            {/* Close */}
-            <button
-              onClick={closeImage}
-              className="absolute top-6 right-6 text-white text-3xl hover:scale-110"
-            >
-              ✕
-            </button>
+      {/* LIGHTBOX — rendue dans <body> pour passer au-dessus de la navbar
+          (sticky z-9999, hors du contexte d'empilement de <main>) */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {currentIndex !== null && (
+              <motion.div
+                className="fixed inset-0 bg-black/90 backdrop-blur-lg flex items-center justify-center z-[10000]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={closeImage}
+              >
+                {/* Close */}
+                <button
+                  onClick={closeImage}
+                  className="absolute top-6 right-6 text-white text-3xl hover:scale-110"
+                >
+                  ✕
+                </button>
 
-            {/* Prev */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                prevImage();
-              }}
-              className="absolute left-6 text-white text-4xl hover:scale-125"
-            >
-              ‹
-            </button>
+                {/* Prev */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                  }}
+                  className="absolute left-6 text-white text-4xl hover:scale-125"
+                >
+                  ‹
+                </button>
 
-            {/* Image */}
-            <motion.div
-              key={currentIndex}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={images[currentIndex]}
-                alt="Preview projet"
-                width={1200}
-                height={800}
-                className="max-h-[85vh] max-w-[90vw] object-contain rounded-xl"
-              />
-            </motion.div>
+                {/* Image */}
+                <motion.div
+                  key={currentIndex}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image
+                    src={images[currentIndex]}
+                    alt="Preview projet"
+                    width={1200}
+                    height={800}
+                    className="max-h-[85vh] max-w-[90vw] object-contain rounded-xl"
+                  />
+                </motion.div>
 
-            {/* Next */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                nextImage();
-              }}
-              className="absolute right-6 text-white text-4xl hover:scale-125"
-            >
-              ›
-            </button>
+                {/* Next */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                  }}
+                  className="absolute right-6 text-white text-4xl hover:scale-125"
+                >
+                  ›
+                </button>
 
-            {/* Counter */}
-            <div className="absolute bottom-6 text-white text-sm bg-white/10 px-4 py-2 rounded-full backdrop-blur">
-              {currentIndex + 1} / {images.length}
-            </div>
-          </motion.div>
+                {/* Counter */}
+                <div className="absolute bottom-6 text-white text-sm bg-white/10 px-4 py-2 rounded-full backdrop-blur">
+                  {currentIndex + 1} / {images.length}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   );
 }

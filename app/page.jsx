@@ -2,6 +2,7 @@ import PremiumSectionCard from '@/components/anims/PremiumSectionCard';
 import PremiumCard from '@/components/anims/PremiumCard';
 import LinkCard from '@/components/anims/LinkCard';
 import ButtonB from '@/components/buttons/ButtonB';
+import AltSiteNudge from '@/components/buttons/AltSiteNudge';
 import MotionTitle from '@/components/anims/MotionTitle';
 import MotionP from '@/components/anims/MotionP';
 import ContactForm from '@/components/forms/ContactForm';
@@ -380,29 +381,35 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="space-y-16 max-w-6xl mx-auto">
+        <div className="space-y-8 md:space-y-16 max-w-6xl mx-auto">
           <PremiumCard
             image="/images/teoola.png"
+            index={1}
+            total={3}
+            accent="#f97316"
             title="Teoola"
             description="Application de gestion d'abonnés conçue pour la performance et l'automatisation."
             link="/projects/teoola"
-            showButton
           />
 
           <PremiumCard
             image="/images/hotels1.png"
+            index={2}
+            total={3}
+            accent="#eab308"
             title="SmartHotel"
             description="Solution intelligente de gestion hôtelière."
             link="/projects/smart-hotel"
-            showButton
           />
 
           <PremiumCard
             image="/images/caroux.png"
+            index={3}
+            total={3}
+            accent="#ea580c"
             title="Caroux Electro Vélo"
             description="Location et vente de vélos électriques."
             link="/projects/caroux"
-            showButton
           />
         </div>
       </section>
@@ -433,6 +440,8 @@ export default function HomePage() {
       <div className="max-w-md mx-auto px-6 pb-16">
         <LinkCard />
       </div>
+
+      <AltSiteNudge />
     </>
   );
 }

@@ -11,6 +11,9 @@ export default function PremiumCard({
   description,
   link,
   showButton = true,
+  index,
+  total,
+  accent = '#1d4ed8',
 }) {
   const cardRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -78,11 +81,12 @@ export default function PremiumCard({
           : {}
       }
       className="
-        rounded-2xl md:rounded-3xl
+        group relative
+        rounded-3xl
         overflow-hidden
         bg-white
-        border border-slate-200
-        shadow-sm
+        border border-slate-200/80
+        shadow-xl shadow-slate-900/5 md:shadow-sm
         cursor-pointer
         active:scale-[0.98]
         transition
@@ -93,39 +97,61 @@ export default function PremiumCard({
       }}
     >
       {/* IMAGE */}
-      <div className="relative w-full h-[180px] sm:h-[220px] md:h-[480px] bg-slate-50">
+      <div className="relative w-full h-[210px] sm:h-[240px] md:h-[480px] bg-slate-50 overflow-hidden">
+        {/* Mobile : halo aux couleurs du projet + trame de points */}
+        <div
+          className="md:hidden absolute inset-0"
+          style={{
+            background: `radial-gradient(circle at 50% 55%, ${accent}26, transparent 70%)`,
+          }}
+        />
+        <div className="md:hidden absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] bg-size-[14px_14px] mask-[radial-gradient(ellipse_at_center,black_30%,transparent_75%)] opacity-70" />
+
         <Image
           src={image}
           alt={title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-contain p-4 md:p-0"
+          className="object-contain px-12 py-14 md:p-0"
         />
+
+        {index && (
+          <span className="md:hidden absolute top-4 left-4 font-mono text-[11px] tracking-widest text-slate-400">
+            {String(index).padStart(2, '0')}
+            {total && ` / ${String(total).padStart(2, '0')}`}
+          </span>
+        )}
       </div>
 
       {/* TEXTE (IMPORTANT : PLUS D'ABSOLUTE EN MOBILE) */}
       <div
         className="
-          p-4
+          px-6 pt-6 pb-2
+          border-t border-slate-100 md:border-0
           md:absolute md:bottom-0 md:left-0 md:w-full
           md:p-12
           md:bg-gradient-to-t md:from-black/70 md:to-transparent
         "
       >
         <div className="max-w-full md:max-w-xl">
-          <h2 className="text-lg md:text-5xl font-semibold mb-2 md:mb-3 text-slate-900 md:text-white">
+          <h2 className="text-2xl md:text-5xl font-semibold tracking-tight md:tracking-normal mb-2 md:mb-3 text-slate-900 md:text-white">
             {title}
           </h2>
 
-          <p className="text-slate-600 md:text-gray-300 text-sm md:text-lg leading-snug md:leading-relaxed">
+          <p className="text-slate-600 md:text-gray-300 text-[15px] md:text-lg leading-relaxed">
             {description}
           </p>
         </div>
       </div>
 
       {/* CTA MOBILE */}
-      <div className="md:hidden px-4 pb-4 text-blue-700 text-sm font-medium">
-        Voir le projet →
+      <div className="md:hidden mx-6 mt-4 mb-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+        <span className="text-sm font-medium text-slate-900">
+          Voir le projet
+        </span>
+        <span className="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center transition-transform duration-300 group-active:translate-x-1">
+          →
+        </span>
       </div>
 
       {/* BUTTON DESKTOP */}

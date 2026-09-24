@@ -89,9 +89,26 @@ export default function Navbar() {
           <ButtonB
             text="Me contacter"
             href="/#contact"
-            className="shrink-0 relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-400 text-white text-xs sm:text-sm font-medium shadow-lg shadow-orange-500/20 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-orange-300"
+            className="shrink-0 whitespace-nowrap relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-400 text-white text-xs sm:text-sm font-medium shadow-lg shadow-orange-500/20 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-orange-300"
           />
         </div>
+
+        {/* Mobile : pas la place sur la ligne principale, les autres
+            projets passent sur une seconde ligne fine */}
+        {pathname.startsWith('/projects') && (
+          <nav className="md:hidden flex items-center justify-center gap-5 px-6 py-2 border-t border-slate-800 text-xs">
+            <span className="text-slate-500">Autres projets :</span>
+            {otherProjects.map((p) => (
+              <Link
+                key={p.slug}
+                href={p.href}
+                className="text-slate-300 hover:text-white transition"
+              >
+                {p.label}
+              </Link>
+            ))}
+          </nav>
+        )}
       </header>
     );
   }
@@ -128,7 +145,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-6">
+          <a
+            href="https://www.laymadev.fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-slate-400 hover:text-white transition"
+          >
+            Versions alternatives ↗
+          </a>
           <ButtonB
             text="Me contacter"
             href="#contact"
